@@ -1,0 +1,87 @@
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" xmlns:ns1="http://www.w3.org/1999/xlink" width="576pt" height="48pt" viewBox="0.00 0.00 576.00 47.75">
+<ns0:g id="graph0" class="graph" transform="scale(0.75 0.75) rotate(0) translate(4 60)">
+<ns0:title>inheritanceeac76869cb</ns0:title>
+<ns0:polygon fill="white" stroke="transparent" points="-4,4 -4,-60 768,-60 768,4 -4,4" />
+
+<ns0:g id="node1" class="node">
+<ns0:title>QtWidgets.QTextEdit</ns0:title>
+<ns0:polygon fill="none" stroke="black" stroke-width="0.5" points="764,-37 647,-37 647,-18 764,-18 764,-37" />
+<ns0:text text-anchor="middle" x="705.5" y="-25" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00">QtWidgets.QTextEdit</ns0:text>
+</ns0:g>
+
+<ns0:g id="node2" class="node">
+<ns0:title>QtWidgets.QAbstractScrollArea</ns0:title>
+<ns0:g id="a_node2"><ns0:a ns1:href="../PySide6/QtWidgets/QAbstractScrollArea.html#PySide6.QtWidgets.QAbstractScrollArea" ns1:title="QtWidgets.QAbstractScrollArea" target="_top">
+<ns0:polygon fill="none" stroke="black" stroke-width="0.5" points="611,-37 443,-37 443,-18 611,-18 611,-37" />
+<ns0:text text-anchor="middle" x="527" y="-25" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00">QtWidgets.QAbstractScrollArea</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge1" class="edge">
+<ns0:title>QtWidgets.QAbstractScrollArea-&gt;QtWidgets.QTextEdit</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M611.08,-27.5C621.36,-27.5 631.73,-27.5 641.64,-27.5" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="641.77,-29.25 646.77,-27.5 641.77,-25.75 641.77,-29.25" />
+</ns0:g>
+
+<ns0:g id="node3" class="node">
+<ns0:title>QtWidgets.QFrame</ns0:title>
+<ns0:g id="a_node3"><ns0:a ns1:href="../PySide6/QtWidgets/QFrame.html#PySide6.QtWidgets.QFrame" ns1:title="QtWidgets.QFrame" target="_top">
+<ns0:polygon fill="none" stroke="black" stroke-width="0.5" points="407,-37 298,-37 298,-18 407,-18 407,-37" />
+<ns0:text text-anchor="middle" x="352.5" y="-25" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00">QtWidgets.QFrame</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge2" class="edge">
+<ns0:title>QtWidgets.QFrame-&gt;QtWidgets.QAbstractScrollArea</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M407.13,-27.5C416.91,-27.5 427.34,-27.5 437.81,-27.5" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="437.95,-29.25 442.95,-27.5 437.95,-25.75 437.95,-29.25" />
+</ns0:g>
+
+<ns0:g id="node4" class="node">
+<ns0:title>QtWidgets.QWidget</ns0:title>
+<ns0:g id="a_node4"><ns0:a ns1:href="../PySide6/QtWidgets/QWidget.html#PySide6.QtWidgets.QWidget" ns1:title="QtWidgets.QWidget" target="_top">
+<ns0:polygon fill="none" stroke="black" stroke-width="0.5" points="262,-37 149,-37 149,-18 262,-18 262,-37" />
+<ns0:text text-anchor="middle" x="205.5" y="-25" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00">QtWidgets.QWidget</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge3" class="edge">
+<ns0:title>QtWidgets.QWidget-&gt;QtWidgets.QFrame</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M262.15,-27.5C272.08,-27.5 282.45,-27.5 292.47,-27.5" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="292.67,-29.25 297.67,-27.5 292.67,-25.75 292.67,-29.25" />
+</ns0:g>
+
+<ns0:g id="node5" class="node">
+<ns0:title>QtCore.QObject</ns0:title>
+<ns0:g id="a_node5"><ns0:a ns1:href="../PySide6/QtCore/QObject.html#PySide6.QtCore.QObject" ns1:title="QtCore.QObject" target="_top">
+<ns0:polygon fill="none" stroke="black" stroke-width="0.5" points="102.5,-56 10.5,-56 10.5,-37 102.5,-37 102.5,-56" />
+<ns0:text text-anchor="middle" x="56.5" y="-44" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00">QtCore.QObject</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge4" class="edge">
+<ns0:title>QtCore.QObject-&gt;QtWidgets.QWidget</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M102.8,-40.64C115.8,-38.96 130.19,-37.11 143.95,-35.33" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="144.25,-37.05 148.98,-34.68 143.8,-33.58 144.25,-37.05" />
+</ns0:g>
+
+<ns0:g id="node6" class="node">
+<ns0:title>QtGui.QPaintDevice</ns0:title>
+<ns0:g id="a_node6"><ns0:a ns1:href="../PySide6/QtGui/QPaintDevice.html#PySide6.QtGui.QPaintDevice" ns1:title="QtGui.QPaintDevice" target="_top">
+<ns0:polygon fill="none" stroke="black" stroke-width="0.5" points="113,-19 0,-19 0,0 113,0 113,-19" />
+<ns0:text text-anchor="middle" x="56.5" y="-7" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00">QtGui.QPaintDevice</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge5" class="edge">
+<ns0:title>QtGui.QPaintDevice-&gt;QtWidgets.QWidget</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M113.07,-16.31C123.14,-17.54 133.67,-18.83 143.87,-20.08" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="143.67,-21.81 148.85,-20.69 144.1,-18.34 143.67,-21.81" />
+</ns0:g>
+</ns0:g>
+</ns0:svg>

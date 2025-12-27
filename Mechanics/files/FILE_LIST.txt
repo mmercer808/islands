@@ -1,0 +1,108 @@
+# MATTS PROJECT FILE LIST
+# Which files to add to your project folder
+
+═══════════════════════════════════════════════════════════════════════════════
+                           ADD THESE (Core Train)
+═══════════════════════════════════════════════════════════════════════════════
+
+## Primary New File (from this session)
+matts_unified_system.py          # THE unified system with embedding storage + generic observers
+
+## Your Existing Core Files (KEEP)
+graph_core.py                    # IslandGraph, GraphNode, Edge - your foundation
+graph_walker.py                  # GraphWalker, WalkerContext - your traversal
+my_infocom_entity_system.py      # Entity, Link, EntityGraph - your entity model
+narrative.py                     # ProseFragment, StoryBeat - your prose system
+callback_patterns.py             # Your callback templates
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                           DISTILL THESE (Extract Core)
+═══════════════════════════════════════════════════════════════════════════════
+
+## From /mnt/project/ - extract patterns, don't need full files
+
+signal_system.py
+  → Already merged into matts_unified_system.py as generic Observer[P]
+  → KEEP IF: You need CircuitBreaker, async support, threading pools
+  → ARCHIVE IF: Generic Observer pattern is sufficient
+
+context_system.py  
+  → Already merged into TraversalContext
+  → KEEP IF: You need advanced serialization
+  → ARCHIVE IF: TraversalContext.to_dict() is sufficient
+
+context_serialization.py
+  → Compression/base64 patterns available
+  → KEEP IF: You need cross-process context transmission
+  → ARCHIVE IF: Local-only usage
+
+generator_system.py
+  → Iterator patterns merged into TraversalWrapper
+  → ARCHIVE: Superseded
+
+graph_system.py
+  → Basic graph merged into WhiteRoom/GlyphNode
+  → ARCHIVE: Superseded by your graph_core.py + WhiteRoom
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                           ARCHIVE THESE (Don't Need)
+═══════════════════════════════════════════════════════════════════════════════
+
+## UI Files (separate concern)
+story_world_pyside6.py           # PySide6 UI
+proc_streamer_legacy_ui.py       # Legacy UI
+unified_console_tab.py           # Console UI
+simple_word_processor.py         # Word processor UI
+
+## Previous Session Outputs (superseded)
+unified_traversal_lookahead.py   # Superseded by matts_unified_system.py
+matts_project_archive.py         # Earlier version
+matts_complete_stubs.py          # Earlier version
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                           INTEGRATION NOTES
+═══════════════════════════════════════════════════════════════════════════════
+
+The matts_unified_system.py is designed to work WITH your existing files:
+
+1. WhiteRoom is compatible with IslandGraph
+   - Same node/edge patterns
+   - Same serialization approach
+   - Adds embedding support
+
+2. TraversalWrapper is compatible with GraphWalker
+   - Same context patterns
+   - Same callback approach
+   - Adds layer switching
+
+3. Observer[P] is generic
+   - Works with GraphNode, Entity, or ANY class
+   - No type restrictions
+
+4. EmbeddingStore is a STORAGE TYPE
+   - Use like: StorageType.EMBEDDING
+   - Supports similarity search
+   - Integrates with WhiteRoom.find_similar()
+
+
+═══════════════════════════════════════════════════════════════════════════════
+                           RECOMMENDED PROJECT STRUCTURE
+═══════════════════════════════════════════════════════════════════════════════
+
+matts/
+├── core/
+│   ├── matts_unified_system.py    # NEW - unified system
+│   ├── graph_core.py              # Your IslandGraph
+│   ├── graph_walker.py            # Your GraphWalker  
+│   └── callback_patterns.py       # Your callbacks
+├── entity/
+│   ├── my_infocom_entity_system.py
+│   └── narrative.py
+├── docs/
+│   ├── my_infocom_design_document.md
+│   └── matts_project_archive.md   # Documentation for Claude Code
+└── archive/
+    └── (old versions, UI files)

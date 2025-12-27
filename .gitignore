@@ -1,0 +1,58 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+env/
+venv/
+ENV/
+.venv/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.cursor/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Project specific
+*.zip
+*.mp3
+*.pyc
+settings.json
+aqua_settings.json
+snapshots/
+*.log
+
+# Keep these directories but ignore contents that shouldn't be tracked
+signbook/last-sign/
+signbook/sonar-sign/
+
+# Temporary files
+*.tmp
+*.temp
+*.bak

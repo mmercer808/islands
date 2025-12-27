@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="560" viewBox="0 0 1100 560">
+  <defs>
+    <style>
+      .box { fill: #f6f6f6; stroke: #333; stroke-width: 1.5; }
+      .title { font: 16px monospace; fill: #111; }
+      .text { font: 13px monospace; fill: #222; }
+      .arrow { stroke: #333; stroke-width: 1.5; fill: none; marker-end: url(#arrow); }
+      .note { font: 12px monospace; fill: #666; }
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <path d="M0,0 L9,3 L0,6 Z" fill="#333" />
+    </marker>
+  </defs>
+
+  <rect class="box" x="40" y="40" width="220" height="80" />
+  <text class="title" x="50" y="70">HTML Client</text>
+  <text class="text" x="50" y="92">room.html</text>
+
+  <rect class="box" x="320" y="40" width="260" height="80" />
+  <text class="title" x="330" y="70">Message Transport</text>
+  <text class="note" x="330" y="92">(not shown in repo)</text>
+
+  <rect class="box" x="640" y="30" width="300" height="100" />
+  <text class="title" x="650" y="60">MessagingInterface</text>
+  <text class="text" x="650" y="82">MessageBuffer + IOBridge</text>
+  <text class="text" x="650" y="102">SignalFactory</text>
+
+  <rect class="box" x="640" y="170" width="300" height="90" />
+  <text class="title" x="650" y="200">Listener</text>
+  <text class="text" x="650" y="222">Observer | EventLoop</text>
+
+  <rect class="box" x="640" y="300" width="300" height="120" />
+  <text class="title" x="650" y="330">GameOrchestrator</text>
+  <text class="text" x="650" y="352">_handle_signal()</text>
+  <text class="text" x="650" y="372">process_event_loop()</text>
+  <text class="text" x="650" y="392">ThinkingGraph</text>
+
+  <rect class="box" x="40" y="350" width="240" height="90" />
+  <text class="title" x="50" y="380">PySide UI</text>
+  <text class="text" x="50" y="402">story_world_pyside6.py</text>
+
+  <rect class="box" x="40" y="470" width="240" height="70" />
+  <text class="title" x="50" y="500">Narrative Chains</text>
+  <text class="text" x="50" y="522">narrative_chain_iterator_system.py</text>
+
+  <path class="arrow" d="M260,80 L320,80" />
+  <path class="arrow" d="M580,80 L640,80" />
+  <path class="arrow" d="M790,130 L790,170" />
+  <path class="arrow" d="M790,260 L790,300" />
+
+  <path class="arrow" d="M280,395 L640,360" />
+  <text class="note" x="290" y="370">UI integration not wired</text>
+
+  <path class="arrow" d="M280,505 L640,380" />
+  <text class="note" x="290" y="485">Separate system (no link seen)</text>
+</svg>

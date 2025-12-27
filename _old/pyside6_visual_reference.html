@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PySide6 Complete Class Reference</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: #fff;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .modules-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .module {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .module:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        .module-header {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .core { background: linear-gradient(45deg, #ff9a9e, #fecfef); }
+        .widgets { background: linear-gradient(45deg, #a8edea, #fed6e3); }
+        .gui { background: linear-gradient(45deg, #ffecd2, #fcb69f); }
+        .network { background: linear-gradient(45deg, #ff8a80, #ea80fc); }
+        .multimedia { background: linear-gradient(45deg, #84fab0, #8fd3f4); }
+        .web { background: linear-gradient(45deg, #ffd54f, #ffcc02); }
+        .data { background: linear-gradient(45deg, #ce93d8, #f8bbd9); }
+        .graphics { background: linear-gradient(45deg, #81c784, #aed581); }
+
+        .class-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 8px;
+        }
+
+        .class-item {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .class-item:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: scale(1.05);
+        }
+
+        .important {
+            font-weight: bold;
+            background: rgba(255, 215, 0, 0.3);
+            border: 1px solid rgba(255, 215, 0, 0.5);
+        }
+
+        .class-count {
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .search-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .search-box {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 14px;
+            backdrop-filter: blur(10px);
+            width: 250px;
+        }
+
+        .search-box::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .search-box:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .highlight {
+            background: rgba(255, 255, 0, 0.4) !important;
+            animation: pulse 1s ease-in-out;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .print-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 50px;
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .print-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        @media print {
+            body { background: white; color: black; }
+            .module { border: 2px solid #333; background: white; }
+            .search-container, .print-button { display: none; }
+            .modules-container { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .modules-container {
+                grid-template-columns: 1fr;
+            }
+            .search-container {
+                position: relative;
+                top: auto;
+                right: auto;
+                margin-bottom: 20px;
+                text-align: center;
+            }
+            .header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="search-container">
+        <input type="text" class="search-box" placeholder="Search classes..." id="searchBox">
+    </div>
+
+    <div class="header">
+        <h1>PySide6 Complete Class Reference</h1>
+        <p>Comprehensive visual guide to all PySide6 modules and classes</p>
+    </div>
+
+    <div class="modules-container">
+        <!-- QtCore Module -->
+        <div class="module">
+            <div class="module-header core">PySide6.QtCore</div>
+            <div class="class-count">Essential core classes (50+ classes)</div>
+            <div class="class-grid">
+                <div class="class-item important">QObject</div>
+                <div class="class-item important">QApplication</div>
+                <div class="class-item important">QTimer</div>
+                <div class="class-item important">QThread</div>
+                <div class="class-item important">Signal</div>
+                <div class="class-item important">Slot</div>
+                <div class="class-item">QAbstractAnimation</div>
+                <div class="class-item">QPropertyAnimation</div>
+                <div class="class-item">QSequentialAnimationGroup</div>
+                <div class="class-item">QParallelAnimationGroup</div>
+                <div class="class-item">QEasingCurve</div>
+                <div class="class-item">QPoint</div>
+                <div class="class-item">QPointF</div>
+                <div class="class-item">QSize</div>
+                <div class="class-item">QSizeF</div>
+                <div class="class-item">QRect</div>
+                <div class="class-item">QRectF</div>
+                <div class="class-item">QMargins</div>
+                <div class="class-item">QMarginsF</div>
+                <div class="class-item">QUrl</div>
+                <div class="class-item">QUrlQuery</div>
+                <div class="class-item">QDir</div>
+                <div class="class-item">QFile</div>
+                <div class="class-item">QFileInfo</div>
+                <div class="class-item">QIODevice</div>
+                <div class="class-item">QTextStream</div>
+                <div class="class-item">QDataStream</div>
+                <div class="class-item">QBuffer</div>
+                <div class="class-item">QDateTime</div>
+                <div class="class-item">QDate</div>
+                <div class="class-item">QTime</div>
+                <div class="class-item">QElapsedTimer</div>
+                <div class="class-item">QSettings</div>
+                <div class="class-item">QStandardPaths</div>
+                <div class="class-item">QMimeData</div>
+                <div class="class-item">QMimeType</div>
+                <div class="class-item">QMimeDatabase</div>
+                <div class="class-item">QProcess</div>
+                <div class="class-item">QEventLoop</div>
+                <div class="class-item">QCoreApplication</div>
+                <div class="class-item">QCommandLineParser</div>
+                <div class="class-item">QCommandLineOption</div>
+                <div class="class-item">QTranslator</div>
+                <div class="class-item">QLocale</div>
+                <div class="class-item">QVariant</div>
+                <div class="class-item">QByteArray</div>
+                <div class="class-item">QString</div>
+                <div class="class-item">QStringList</div>
+                <div class="class-item">QRegularExpression</div>
+                <div class="class-item">QRegularExpressionMatch</div>
+                <div class="class-item">QMutex</div>
+                <div class="class-item">QSemaphore</div>
+                <div class="class-item">QWaitCondition</div>
+                <div class="class-item">QThreadPool</div>
+                <div class="class-item">QRunnable</div>
+            </div>
+        </div>
+
+        <!-- QtWidgets Module -->
+        <div class="module">
+            <div class="module-header widgets">PySide6.QtWidgets</div>
+            <div class="class-count">UI widgets and layouts (100+ classes)</div>
+            <div class="class-grid">
+                <div class="class-item important">QWidget</div>
+                <div class="class-item important">QMainWindow</div>
+                <div class="class-item important">QPushButton</div>
+                <div class="class-item important">QLabel</div>
+                <div class="class-item important">QLineEdit</div>
+                <div class="class-item important">QVBoxLayout</div>
+                <div class="class-item important">QHBoxLayout</div>
+                <div class="class-item important">QGridLayout</div>
+                <div class="class-item">QTextEdit</div>
+                <div class="class-item">QPlainTextEdit</div>
+                <div class="class-item">QComboBox</div>
+                <div class="class-item">QSpinBox</div>
+                <div class="class-item">QDoubleSpinBox</div>
+                <div class="class-item">QSlider</div>
+                <div class="class-item">QProgressBar</div>
+                <div class="class-item">QCheckBox</div>
+                <div class="class-item">QRadioButton</div>
+                <div class="class-item">QButtonGroup</div>
+                <div class="class-item">QGroupBox</div>
+                <div class="class-item">QTabWidget</div>
+                <div class="class-item">QTabBar</div>
+                <div class="class-item">QStackedWidget</div>
+                <div class="class-item">QSplitter</div>
+                <div class="class-item">QScrollArea</div>
+                <div class="class-item">QScrollBar</div>
+                <div class="class-item">QFrame</div>
+                <div class="class-item">QDialog</div>
+                <div class="class-item">QMessageBox</div>
+                <div class="class-item">QFileDialog</div>
+                <div class="class-item">QColorDialog</div>
+                <div class="class-item">QFontDialog</div>
+                <div class="class-item">QInputDialog</div>
+                <div class="class-item">QProgressDialog</div>
+                <div class="class-item">QErrorMessage</div>
+                <div class="class-item">QWizard</div>
+                <div class="class-item">QWizardPage</div>
+                <div class="class-item">QFormLayout</div>
+                <div class="class-item">QStackedLayout</div>
+                <div class="class-item">QSizePolicy</div>
+                <div class="class-item">QSpacerItem</div>
+                <div class="class-item">QLayoutItem</div>
+                <div class="class-item">QMenuBar</div>
+                <div class="class-item">QMenu</div>
+                <div class="class-item">QAction</div>
+                <div class="class-item">QActionGroup</div>
+                <div class="class-item">QToolBar</div>
+                <div class="class-item">QToolButton</div>
+                <div class="class-item">QStatusBar</div>
+                <div class="class-item">QDockWidget</div>
+                <div class="class-item">QMdiArea</div>
+                <div class="class-item">QMdiSubWindow</div>
+                <div class="class-item">QListWidget</div>
+                <div class="class-item">QListWidgetItem</div>
+                <div class="class-item">QTreeWidget</div>
+                <div class="class-item">QTreeWidgetItem</div>
+                <div class="class-item">QTableWidget</div>
+                <div class="class-item">QTableWidgetItem</div>
+                <div class="class-item">QHeaderView</div>
+                <div class="class-item">QAbstractItemView</div>
+                <div class="class-item">QListView</div>
+                <div class="class-item">QTreeView</div>
+                <div class="class-item">QTableView</div>
+                <div class="class-item">QColumnView</div>
+                <div class="class-item">QStyledItemDelegate</div>
+                <div class="class-item">QItemDelegate</div>
+                <div class="class-item">QAbstractItemDelegate</div>
+                <div class="class-item">QDataWidgetMapper</div>
+                <div class="class-item">QCompleter</div>
+                <div class="class-item">QSystemTrayIcon</div>
+                <div class="class-item">QDesktopWidget</div>
+                <div class="class-item">QApplication</div>
+                <div class="class-item">QStyle</div>
+                <div class="class-item">QStyleOption</div>
+                <div class="class-item">QProxyStyle</div>
+                <div class="class-item">QGraphicsView</div>
+                <div class="class-item">QGraphicsScene</div>
+                <div class="class-item">QGraphicsItem</div>
+                <div class="class-item">QGraphicsWidget</div>
+                <div class="class-item">QGraphicsProxyWidget</div>
+                <div class="class-item">QGraphicsEffect</div>
+                <div class="class-item">QGraphicsDropShadowEffect</div>
+                <div class="class-item">QGraphicsBlurEffect</div>
+                <div class="class-item">QGraphicsColorizeEffect</div>
+                <div class="class-item">QGraphicsOpacityEffect</div>
+                <div class="class-item">QUndoView</div>
+                <div class="class-item">QUndoStack</div>
+                <div class="class-item">QUndoCommand</div>
+                <div class="class-item">QRubberBand</div>
+                <div class="class-item">QSizeGrip</div>
+                <div class="class-item">QFocusFrame</div>
+                <div class="class-item">QGestureEvent</div>
+                <div class="class-item">QGestureRecognizer</div>
+            </div>
+        </div>
+
+        <!-- QtGui Module -->
+        <div class="module">
+            <div class="module-header gui">PySide6.QtGui</div>
+            <div class="class-count">Graphics, painting, and input (80+ classes)</div>
+            <div class="class-grid">
+                <div class="class-item important">QPainter</div>
+                <div class="class-item important">QPixmap</div>
+                <div class="class-item important">QIcon</div>
+                <div class="class-item important">QFont</div>
+                <div class="class-item important">QColor</div>
+                <div class="class-item important">QPen</div>
+                <div class="class-item important">QBrush</div>
+                <div class="class-item">QImage</div>
+                <div class="class-item">QBitmap</div>
+                <div class="class-item">QPicture</div>
+                <div class="class-item">QMovie</div>
+                <div class="class-item">QImageReader</div>
+                <div class="class-item">QImageWriter</div>
+                <div class="class-item">QPaintDevice</div>
+                <div class="class-item">QPaintEngine</div>
+                <div class="class-item">QFontMetrics</div>
+                <div class="class-item">QFontMetricsF</div>
+                <div class="class-item">QFontInfo</div>
+                <div class="class-item">QFontDatabase</div>
+                <div class="class-item">QPalette</div>
+                <div class="class-item">QPolygon</div>
+                <div class="class-item">QPolygonF</div>
+                <div class="class-item">QRegion</div>
+                <div class="class-item">QTransform</div>
+                <div class="class-item">QMatrix4x4</div>
+                <div class="class-item">QVector2D</div>
+                <div class="class-item">QVector3D</div>
+                <div class="class-item">QVector4D</div>
+                <div class="class-item">QQuaternion</div>
+                <div class="class-item">QLinearGradient</div>
+                <div class="class-item">QRadialGradient</div>
+                <div class="class-item">QConicalGradient</div>
+                <div class="class-item">QGradient</div>
+                <div class="class-item">QTextCursor</div>
+                <div class="class-item">QTextDocument</div>
+                <div class="class-item">QTextCharFormat</div>
+                <div class="class-item">QTextBlockFormat</div>
+                <div class="class-item">QTextListFormat</div>
+                <div class="class-item">QTextTableFormat</div>
+                <div class="class-item">QTextFrameFormat</div>
+                <div class="class-item">QTextImageFormat</div>
+                <div class="class-item">QTextLayout</div>
+                <div class="class-item">QTextLine</div>
+                <div class="class-item">QTextOption</div>
+                <div class="class-item">QSyntaxHighlighter</div>
+                <div class="class-item">QValidator</div>
+                <div class="class-item">QIntValidator</div>
+                <div class="class-item">QDoubleValidator</div>
+                <div class="class-item">QRegularExpressionValidator</div>
+                <div class="class-item">QKeySequence</div>
+                <div class="class-item">QShortcut</div>
+                <div class="class-item">QAction</div>
+                <div class="class-item">QActionGroup</div>
+                <div class="class-item">QClipboard</div>
+                <div class="class-item">QDrag</div>
+                <div class="class-item">QMimeData</div>
+                <div class="class-item">QDropEvent</div>
+                <div class="class-item">QDragEnterEvent</div>
+                <div class="class-item">QDragMoveEvent</div>
+                <div class="class-item">QDragLeaveEvent</div>
+                <div class="class-item">QMouseEvent</div>
+                <div class="class-item">QKeyEvent</div>
+                <div class="class-item">QWheelEvent</div>
+                <div class="class-item">QFocusEvent</div>
+                <div class="class-item">QPaintEvent</div>
+                <div class="class-item">QResizeEvent</div>
+                <div class="class-item">QMoveEvent</div>
+                <div class="class-item">QCloseEvent</div>
+                <div class="class-item">QShowEvent</div>
+                <div class="class-item">QHideEvent</div>
+                <div class="class-item">QContextMenuEvent</div>
+                <div class="class-item">QInputMethodEvent</div>
+                <div class="class-item">QTabletEvent</div>
+                <div class="class-item">QTouchEvent</div>
+                <div class="class-item">QScreen</div>
+                <div class="class-item">QWindow</div>
+                <div class="class-item">QSurface</div>
+                <div class="class-item">QSurfaceFormat</div>
+                <div class="class-item">QOpenGLContext</div>
+                <div class="class-item">QOpenGLPaintDevice</div>
+                <div class="class-item">QPageSize</div>
+                <div class="class-item">QPageLayout</div>
+                <div class="class-item">QPagedPaintDevice</div>
+                <div class="class-item">QPdfWriter</div>
+                <div class="class-item">QTextDocumentWriter</div>
+                <div class="class-item">QStandardItemModel</div>
+                <div class="class-item">QStandardItem</div>
+                <div class="class-item">QStringListModel</div>
+                <div class="class-item">QFileSystemModel</div>
+                <div class="class-item">QAbstractItemModel</div>
+                <div class="class-item">QAbstractListModel</div>
+                <div class="class-item">QAbstractTableModel</div>
+                <div class="class-item">QAbstractProxyModel</div>
+                <div class="class-item">QSortFilterProxyModel</div>
+                <div class="class-item">QIdentityProxyModel</div>
+                <div class="class-item">QItemSelection</div>
+                <div class="class-item">QItemSelectionModel</div>
+                <div class="class-item">QItemSelectionRange</div>
+                <div class="class-item">QModelIndex</div>
+                <div class="class-item">QPersistentModelIndex</div>
+            </div>
+        </div>
+
+        <!-- QtNetwork Module -->
+        <div class="module">
+            <div class="module-header network">PySide6.QtNetwork</div>
+            <div class="class-count">Network programming classes (40+ classes)</div>
+            <div class="class-grid">
+                <div class="class-item important">QNetworkAccessManager</div>
+                <div class="class-item important">QNetworkRequest</div>
+                <div class="class-item important">QNetworkReply</div>
+                <div class="class-item">QTcpSocket</div>
+                <div class="class-item">QUdpSocket</div>
+                <div class="class-item">QTcpServer</div>
+                <div class="class-item">QAbstractSocket</div>
+                <div class="class-item">QHostAddress</div>
+                <div class="class-item">QHostInfo</div>
+                <div class="class-item">QNetworkInterface</div>
+                <div class="class-item">QNetworkAddressEntry</div>
+                <div class="class-item">QNetworkProxy</div>
+                <div class="class-item">QNetworkProxyFactory</div>
+                <div class="class-item">QNetworkProxyQuery</div>
+                <div class="class-item">QNetworkSession</div>
+                <div class="class-item">QNetworkConfiguration</div>
+                <div class="class-item">QNetworkConfigurationManager</div>
+                <div class="class-item">QNetworkCookie</div>
+                <div class="class-item">QNetworkCookieJar</div>
+                <div class="class-item">QNetworkDiskCache</div>
+                <div class="class-item">QAbstractNetworkCache</div>
+                <div class="class-item">QSslSocket</div>
+                <div class="class-item">QSslConfiguration</div>
+                <div class="class-item">QSslCertificate</div>
+                <div class="class-item">QSslKey</div>
+                <div class="class-item">QSslCipher</div>
+                <div class="class-item">QSslError</div>
+                <div class="class-item">QAuthenticator</div>
+                <div class="class-item">QNetworkAccessManager</div>
+                <div class="class-item">QHttpMultiPart</div>
+                <div class="class-item">QHttpPart</div>
+                <div class="class-item">QLocalSocket</div>
+                <div class="class-item">QLocalServer</div>
+                <div class="class-item">QAbstractNetworkCache</div>
+                <div class="class-item">QDnsLookup</div>
+                <div class="class-item">QDnsDomainNameRecord</div>
+                <div class="class-item">QDnsHostAddressRecord</div>
+                <div class="class-item">QDnsMailExchangeRecord</div>
+                <div class="class-item">QDnsServiceRecord</div>
+                <div class="class-item">QDnsTextRecord</div>
+            </div>
+        </div>
+
+        <!-- QtMultimedia Module -->
+        <div class="module">
+            <div class="module-header multimedia">PySide6.QtMultimedia</div>
+            <div class="class-count">Audio, video, and camera classes (30+ classes)</div>
+            <div class="class-grid">
+                <div class="class-item important">QMediaPlayer</div>
+                <div class="class-item important">QAudioOutput</div>
+                <div class="class-item important">QAudioInput</div>
+                <div class="class-item important">QCamera</div>
+                <div class="class-item">QMediaFormat</div>
+                <div class="class-item">QMediaMetaData</div>
+                <div class="class-item">QMediaDevices</div>
+                <div class="class-item">QAudioDevice</div>
+                <div class="class-item">QCameraDevice</div>
+                <div class="class-item">QImageCapture</div>
+                <div class="class-item">QMediaRecorder</div>
+                <div class="class-item">QMediaCaptureSession</div>
+                <div class="class-item">QVideoSink</div>
+                <div class="class-item">QVideoFrame</div>
+                <div class="class-item">QVideoFrameFormat</div>
+                <div class="class-item">QAudioFormat</div>
+                <div class="class-item">QAudioBuffer</div>
+                <div class="class-item">QAudioSource</div>
+                <div class="class-item">QAudioSink</div>
+                <div class="class-item">QSoundEffect</div>
+                <div class="class-item">QCameraFormat</div>
+                <div class="class-item">QCameraFocusControl</div>
+                <div class="class-item">QCameraExposureControl</div>
+                <div class="class-item">QCameraImageProcessingControl</div>
+                <div class="class-item">QMediaTimeRange</div>
+                <div class="class-item">QMediaTimeInterval</div>
+                <div class="class-item">QMediaContent</div>
+                <div class="class-item">QMediaResource</div>
+                <div class="class-item">QMediaPlaylist</div>
+                <div class="class-item">QRadioTuner</div>
+                <div class="class-item">QRadioData</div>
+            </div>
+        </div>
+
+        <!-- QtWebEngine Module -->
+        <div class="module">
+            <div class="module-header web">PySide6.QtWebEngine</div>
+            <div class="class-count">Web browser functionality (20+ classes)</div>
+            <div class="class-grid">
+                <div class="class-item important">QWebEngineView</div>
+                <div class="class-item important">QWebEnginePage</div>
+                <div class="class-item important">QWebEngineProfile</div>
+                <div class="class-item">QWebEngineSettings</div>
+                <div class="class-item">QWebEngineHistory</div>
+                <div class="class-item">QWebEngineHistoryItem</div>
+                <div class="class-item">QWebEngineScript</div>
+                <div class="class-item">QWebEngineScriptCollection</div>
+                <div class="class-item">QWebEngineCookieStore</div>
+                <div class="class-item">QWebEngineDownloadItem</div>
+                <div class="class-item">QWebEngineFullScreenRequest</div>
+                <div class="class-item">QWebEngineContextMenuData</div>
+                <div class="class-item">QWebEngineHttpRequest</div>
+                <div class="class-item">QWebEngineLoadingInfo</div>
+                <div class="class-item">QWebEngineNavigationRequest</div>
+                <div class="class-item">QWebEngineNewWindowRequest</div>
+                <div class="class-item">QWebEngineRegisterProtocolHandlerRequest</div>
+                <div class="class-item">QWebEngineUrlRequestInfo</div>
+                <div class="class-item">QWebEngineUrlRequestInterceptor</div>
+                <div class="class-item">QWebEngineUrlRequestJob</div>
+                <div class="class-item">QWebEngineUrlScheme</div>
+                <div class="class-item">QWebEngineUrlSchemeHandler</div>
+                <div class="class-item">QWebEngineClientCertificateSelection</div>
+                <div class="class-item">QWebEngineQuotaRequest</div>
+                <div class="class-item">QWebEngineNotification</div>
+            </div>
+        </div>
+
+        <!-- QtSql Module -->
+        <div class="module">
+            <div class="module-header data">PySide6.QtSql</div>
+            <div class="class-count">Database functionality (15+ classes)</div>
+            <div class="class-grid">
+                <div class="class-item important">QSqlDatabase</div>
+                <div class="class-item important">QSqlQuery</div>
+                <div class="class-item important">QSqlTableModel</div>
+                <div class="class-item">QSqlQueryModel</div>
+                <div class="class-item">QSqlRelationalTableModel</div>
+                <div class="class-item">QSqlRecord</div>
+                <div class="class-item">QSqlField</div>
+                <div class="class-item">QSqlIndex</div>
+                <div class="class-item">QSqlRelation</div>
+                <div class="class-item">QSqlRelationalDelegate</div>
+                <div class="class-item">QSqlResult</div>
+                <div class="class-item">QSqlDriver</div>
+                <div class="class-item">QSqlDriverCreatorBase</div>
+                <div class="class-item">QSqlError</div>
+                <div class="class-item">QSqlTableModel</div>
+            </div>
+        </div>
+
+        <!-- QtOpenGL Module -->
+        <div class="module">
+            <div class="module-header graphics">PySide6.QtOpenGL</div>
+            <div class="class-count">OpenGL integration (10+ classes)</div>
+            <div class="class-grid">
+                <div class="class-item important">QOpenGLWidget</div>
+                <div class="class-item important">QOpenGLWindow</div>
+                <div class="class-item">QOpenGLContext</div>
+                <div class="class-item">QOpenGLFunctions</div>
+                <div class="class-item">QOpenGLBuffer</div>
+                <div class="class-item">QOpenGLShader</div>
+                <div class="class-item">QOpenGLShaderProgram</div>
+                <div class="class-item">QOpenGLTexture</div>
+                <div class="class-item">QOpenGLVertexArrayObject</div>
+                <div class="class-item">QOpenGLFramebufferObject</div>
+                <div class="class-item">QOpenGLPaintDevice</div>
+                <div class="class-item">QOpenGLPixelTransferOptions</div>
+                <div class="class-item">QOpenGLTimeMonitor</div>
+                <div class="class-item">QOpenGLTimerQuery</div>
+                <div class="class-item">QOpenGLVersionProfile</div>
+                <div class="class-item">QOpenGLDebugLogger</div>
+                <div class="class-item">QOpenGLDebugMessage</div>
+            </div>
+        </div>
+
+        <!-- QtPrintSupport Module -->
+        <div class="module">
+            <div class="module-header gui">PySide6.QtPrintSupport</div>
+            <div class="class-count">Printing functionality (15+ classes)</div>
+            <div class="class-grid">
+                <div class="class-item important">QPrinter</div>
+                <div class="class-item important">QPrintDialog</div>
+                <div class="class-item important">QPrintPreviewDialog</div>
+                <div class="class-item">QPrintPreviewWidget</div>
+                <div class="class-item">QPrintEngine</div>
+                <div class="class-item">QPrinterInfo</div>
+                <div class="class-item">QPageSetupDialog</div>
+                <div class="class-item">QAbstractPrintDialog</div>
+                <div class="class-item">QPrintPreviewWidget</div>
+                <div class="class-item">QPageSize</div>
+                <div class="class-item">QPageLayout</div>
+                <div class="class-item">QMarginsF</div>
+                <div class="class-item">QPrintDocument</div>
+                <div class="class-item">QPrintRange</div>
+                <div class="class-item">QPaperSize</div>
+            </div>
+        </div>
+
+        <!-- QtQml Module -->
+        <div class="module">
+            <div class="module-header core">PySide6.QtQml</div>
+            <div class="class-count">QML integration (20+ classes)</div>
+            <div class="class-grid">
+                <div class="class-item important">QQmlEngine</div>
+                <div class="class-item important">QQmlComponent</div>
+                <div class="class-item important">QQmlApplicationEngine</div>
+                <div class="class-item">QQmlContext</div>
+                <div class="class-item">QQmlProperty</div>
+                <div class="class-item">QQmlPropertyMap</div>
+                <div class="class-item">QQmlListProperty</div>
+                <div class="class-item">QQmlParserStatus</div>
+                <div class="class-item">QQmlPropertyValueSource</div>
+                <div class="class-item">QQmlPropertyValueInterceptor</div>
+                <div class="class-item">QQmlExpression</div>
+                <div class="class-item">QQmlError</div>
+                <div class="class-item">QQmlFileSelector</div>
+                <div class="class-item">QQmlImageProviderBase</div>
+                <div class="class-item">QQmlImageProvider</div>
+                <div class="class-item">QQmlNetworkAccessManagerFactory</div>
+                <div class="class-item">QQmlIncubationController</div>
+                <div class="class-item">QQmlIncubator</div>
+                <div class="class-item">QQmlScriptString</div>
+                <div class="class-item">QJSEngine</div>
+                <div class="class-item">QJSValue</div>
+                <div class="class-item">QJSValueIterator</div>
+            </div>
+        </div>
+
+        <!-- QtQuick Module -->
+        <div class="module">
+            <div class="module-header widgets">PySide6.QtQuick</div>
+            <div class="class-count">Quick/QML UI classes (25+ classes)</div>
+            <div class="class-grid">
+                <div class="class-item important">QQuickView</div>
+                <div class="class-item important">QQuickItem</div>
+                <div class="class-item important">QQuickWindow</div>
+                <div class="class-item">QQuickWidget</div>
+                <div class="class-item">QQuickPaintedItem</div>
+                <div class="class-item">QQuickFramebufferObject</div>
+                <div class="class-item">QQuickTextureFactory</div>
+                <div class="class-item">QQuickImageProvider</div>
+                <div class="class-item">QQuickAsyncImageProvider</div>
+                <div class="class-item">QQuickImageResponse</div>
+                <div class="class-item">QQuickTextDocument</div>
+                <div class="class-item">QQuickRenderControl</div>
+                <div class="class-item">QSGEngine</div>
+                <div class="class-item">QSGAbstractRenderer</div>
+                <div class="class-item">QSGNode</div>
+                <div class="class-item">QSGBasicGeometryNode</div>
+                <div class="class-item">QSGGeometryNode</div>
+                <div class="class-item">QSGClipNode</div>
+                <div class="class-item">QSGTransformNode</div>
+                <div class="class-item">QSGRootNode</div>
+                <div class="class-item">QSGOpacityNode</div>
+                <div class="class-item">QSGFlatColorMaterial</div>
+                <div class="class-item">QSGOpaqueTextureMaterial</div>
+                <div class="class-item">QSGTextureMaterial</div>
+                <div class="class-item">QSGVertexColorMaterial</div>
+                <div class="class-item">QSGGeometry</div>
+                <div class="class-item">QSGMaterial</div>
+                <div class="class-item">QSGMaterialShader</div>
+                <div class="class-item">QSGTexture</div>
+                <div class="class-item">QSGDynamicTexture</div>
+                <div class="class-item">QSGImageNode</div>
+                <div class="class-item">QSGRectangleNode</div>
+                <div class="class-item">QSGSimpleRectNode</div>
+                <div class="class-item">QSGSimpleTextureNode</div>
+            </div>
+        </div>
+
+        <!-- QtSvg Module -->
+        <div class="module">
+            <div class="module-header graphics">PySide6.QtSvg</div>
+            <div class="class-count">SVG graphics support (10+ classes)</div>
+            <div class="class-grid">
+                <div class="class-item important">QSvgRenderer</div>
+                <div class="class-item important">QSvgWidget</div>
+                <div class="class-item">QSvgGenerator</div>
+                <div class="class-item">QGraphicsSvgItem</div>
+                <div class="class-item">QSvgTinyDocument</div>
+            </div>
+        </div>
+
+        <!-- QtTest Module -->
+        <div class="module">
+            <div class="module-header core">PySide6.QtTest</div>
+            <div class="class-count">Unit testing framework (5+ classes)</div>
+            <div class="class-grid">
+                <div class="class-item important">QTest</div>
+                <div class="class-item">QSignalSpy</div>
+                <div class="class-item">QTestEventLoop</div>
+                <div class="class-item">QAbstractItemModelTester</div>
+            </div>
+        </div>
+
+        <!-- QtConcurrent Module -->
+        <div class="module">
+            <div class="module-header core">PySide6.QtConcurrent</div>
+            <div class="class-count">Concurrent programming (10+ classes)</div>
+            <div class="class-grid">
+                <div class="class-item important">QtConcurrent</div>
+                <div class="class-item">QFuture</div>
+                <div class="class-item">QFutureWatcher</div>
+                <div class="class-item">QFutureSynchronizer</div>
+                <div class="class-item">QRunnable</div>
+                <div class="class-item">QThreadPool</div>
+            </div>
+        </div>
+
+        <!-- QtHelp Module -->
+        <div class="module">
+            <div class="module-header data">PySide6.QtHelp</div>
+            <div class="class-count">Help system classes (10+ classes)</div>
+            <div class="class-grid">
+                <div class="class-item">QHelpEngine</div>
+                <div class="class-item">QHelpEngineCore</div>
+                <div class="class-item">QHelpContentWidget</div>
+                <div class="class-item">QHelpContentModel</div>
+                <div class="class-item">QHelpContentItem</div>
+                <div class="class-item">QHelpIndexWidget</div>
+                <div class="class-item">QHelpIndexModel</div>
+                <div class="class-item">QHelpSearchEngine</div>
+                <div class="class-item">QHelpSearchQueryWidget</div>
+                <div class="class-item">QHelpSearchResultWidget</div>
+            </div>
+        </div>
+
+        <!-- QtUiTools Module -->
+        <div class="module">
+            <div class="module-header widgets">PySide6.QtUiTools</div>
+            <div class="class-count">UI loading tools (5+ classes)</div>
+            <div class="class-grid">
+                <div class="class-item important">QUiLoader</div>
+                <div class="class-item">QFormBuilder</div>
+            </div>
+        </div>
+    </div>
+
+    <button class="print-button" onclick="window.print()">📄 Print Reference</button>
+
+    <script>
+        // Search functionality
+        const searchBox = document.getElementById('searchBox');
+        const classItems = document.querySelectorAll('.class-item');
+
+        searchBox.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            
+            classItems.forEach(item => {
+                const className = item.textContent.toLowerCase();
+                if (className.includes(searchTerm)) {
+                    item.style.display = 'block';
+                    if (searchTerm.length > 0) {
+                        item.classList.add('highlight');
+                    } else {
+                        item.classList.remove('highlight');
+                    }
+                } else {
+                    if (searchTerm.length > 0) {
+                        item.style.display = 'none';
+                    } else {
+                        item.style.display = 'block';
+                    }
+                }
+            });
+
+            // Show/hide modules based on visible classes
+            document.querySelectorAll('.module').forEach(module => {
+                const visibleClasses = module.querySelectorAll('.class-item[style*="block"], .class-item:not([style*="none"])');
+                if (searchTerm.length > 0 && visibleClasses.length === 0) {
+                    module.style.display = 'none';
+                } else {
+                    module.style.display = 'block';
+                }
+            });
+        });
+
+        // Click to copy class name
+        classItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const moduleName = this.closest('.module').querySelector('.module-header').textContent;
+                const className = this.textContent;
+                const fullName = `${moduleName}.${className}`;
+                
+                navigator.clipboard.writeText(fullName).then(() => {
+                    // Visual feedback
+                    const originalText = this.textContent;
+                    this.textContent = '✓ Copied!';
+                    this.style.background = 'rgba(76, 175, 80, 0.6)';
+                    
+                    setTimeout(() => {
+                        this.textContent = originalText;
+                        this.style.background = '';
+                    }, 1000);
+                }).catch(() => {
+                    // Fallback for older browsers
+                    console.log(`Copy this: ${fullName}`);
+                });
+            });
+        });
+
+        // Add tooltips
+        classItems.forEach(item => {
+            item.title = `Click to copy import path`;
+        });
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.key === 'f') {
+                e.preventDefault();
+                searchBox.focus();
+            }
+            if (e.key === 'Escape') {
+                searchBox.value = '';
+                searchBox.dispatchEvent(new Event('input'));
+                searchBox.blur();
+            }
+        });
+
+        // Add count of classes per module
+        document.querySelectorAll('.module').forEach(module => {
+            const classes = module.querySelectorAll('.class-item');
+            const countElement = module.querySelector('.class-count');
+            const actualCount = classes.length;
+            const currentText = countElement.textContent;
+            countElement.textContent = currentText.replace(/\d+\+/, actualCount);
+        });
+
+        console.log('PySide6 Reference loaded! Use Ctrl+F to search, click classes to copy import paths.');
+    </script>
+</body>
+</html>
