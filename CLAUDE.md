@@ -85,6 +85,16 @@ Execution contexts serialize with compression for signal transmission:
 - **PyOpenGL** (optional) - OpenGL rendering in story_world
 - **requests** - HTTP client for LLM integration
 
+## Maintenance and consolidation
+
+- **MAINTENANCE.md** — Best concepts to preserve, correct work order, decisions to make.
+- **ISLANDS_TODO.md** — Single ordered TODO (bootstrap → core → services → keepers → ingest → signbook → sandbar).
+- **sandbar/** — Alternate integration: proc_streamer loads LLM; a separate context-feeder thread supplies events/canon/task; aqua-style UI. See sandbar/README.md and sandbar/TODO.md.
+- **island-engine/** — Main working directory (copy of chpt-island-engine); canonical event-sourced engine. **island-engine_scaffold_v3** proposes the same layout; emulate it when adding new pieces.
+- **chpt-island-engine/** — Original source; island-engine at root is now main.
+- **island_engine_consolidation_*.plan.md** — Full assimilation strategy (pine, matts, archive, sandbar).
+- **CONCEPT_SIGNATURES.md** — Method signature catalog of interesting functions from design docs and code (island-engine, matts, pine, complete_story_engine_system); use when appending from other sources.
+
 ## Development Notes
 
 - The `env/` directory is a local Python virtual environment
