@@ -87,13 +87,26 @@ Execution contexts serialize with compression for signal transmission:
 
 ## Maintenance and consolidation
 
-- **MAINTENANCE.md** — Best concepts to preserve, correct work order, decisions to make.
+- **MAINTENANCE.md** — Best concepts to preserve, correct work order, decisions to make, **§ Integrating novel concepts (claude-add)**.
 - **ISLANDS_TODO.md** — Single ordered TODO (bootstrap → core → services → keepers → ingest → signbook → sandbar).
-- **sandbar/** — Alternate integration: proc_streamer loads LLM; a separate context-feeder thread supplies events/canon/task; aqua-style UI. See sandbar/README.md and sandbar/TODO.md.
+- **sandbar/** — Alternate integration: proc_streamer loads LLM; a separate context-feeder thread supplies events/canon/task; aqua-style UI. See sandbar/README.md, sandbar/TODO.md, sandbar/docs/CLEANUP_PLAN.md.
 - **island-engine/** — Main working directory (copy of chpt-island-engine); canonical event-sourced engine. **island-engine_scaffold_v3** proposes the same layout; emulate it when adding new pieces.
 - **chpt-island-engine/** — Original source; island-engine at root is now main.
 - **island_engine_consolidation_*.plan.md** — Full assimilation strategy (pine, matts, archive, sandbar).
 - **CONCEPT_SIGNATURES.md** — Method signature catalog of interesting functions from design docs and code (island-engine, matts, pine, complete_story_engine_system); use when appending from other sources.
+- **claude-add/** — Signbook MCP setup; **ADDING_NEW_CONCEPTS.md** (how to integrate novel ideas while adhering to truths).
+
+### Adding new concepts (claude-add)
+
+When you are asked to **add new ideas** to the collection — even if they require reworking original ideas — purpose your edits as follows so they **adhere to the truths we have to display**:
+
+1. **Preserve the truths** — Do not contradict MAINTENANCE.md § Best concepts (canon event-sourced, agents propose/one writer commits, story is infrastructure, descend not spawn, keepers redirect agency, deferred builder, serializable contexts, signbook, dual display). New concepts must extend or refine these.
+2. **One canonical place** — Add behavior to island-engine (event-sourced spine), sandbar (message-driven server), or pine/matts (workhorse libs). Document new public APIs in CONCEPT_SIGNATURES.md.
+3. **Rework with explanation** — If reworking existing code or docs, state how the rework preserves or strengthens the truths; update MAINTENANCE.md and CLAUDE.md so intent stays clear for the next session.
+4. **Keep the collection coherent** — Each subsystem has a role; if the new concept is a new subsystem, describe it in MAINTENANCE.md and here under Key Systems.
+5. **Update display surfaces** — Ensure the new concept is reflected in docs, CONCEPT_SIGNATURES, and (if user-facing) engine/UI behavior, so “truths we have to display” stay visible.
+
+Full instructions: **MAINTENANCE.md § Integrating novel concepts (claude-add)**. See **claude-add/ADDING_NEW_CONCEPTS.md** for a short reference.
 
 ## Development Notes
 
