@@ -8,7 +8,15 @@
       "Bash(find:*)",
       "Bash(mkdir:*)",
       "Bash(git init:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(gh --version:*)",
+      "Bash(git commit:*)",
+      "Bash(git config:*)",
+      "Bash(winget install:*)",
+      "Bash(\"/c/Program Files/GitHub CLI/gh.exe\" --version)",
+      "Bash(\"/c/Program Files \\(x86\\)/GitHub CLI/gh.exe\" --version)",
+      "Bash(\"/c/Program Files/GitHub CLI/gh.exe\" auth status)",
+      "Bash(\"/c/Program Files/GitHub CLI/gh.exe\" repo create islands --public --source=. --remote=origin --push --description \"Pine - Persistent Interactive Narrative Engine: A framework for AI consciousness persistence and adaptive storytelling\")"
     ]
   }
 }

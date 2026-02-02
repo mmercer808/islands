@@ -1,0 +1,19 @@
+{
+  "entity_type": "keeper",
+  "keeper_id": "keeper_01",
+  "name": "Unnamed Keeper",
+  "voice": {
+    "tone": "calm",
+    "register": "mythic-technical"
+  },
+  "memory": {
+    "short": [],
+    "long": []
+  },
+  "location": "white_room",
+  "capabilities": [
+    "plot_gravity",
+    "contradiction_repair"
+  ],
+  "signature": ""
+}

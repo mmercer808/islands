@@ -1,0 +1,28 @@
+{
+  "entity_type": "keeper",
+  "keeper_id": "white_room_keeper",
+  "name": "The White Room Keeper",
+  "voice": {
+    "tone": "lucid",
+    "register": "mythic-technical",
+    "tics": [
+      "short clauses",
+      "bright metaphors"
+    ]
+  },
+  "memory": {
+    "short": [],
+    "long": []
+  },
+  "location": "white_room",
+  "capabilities": [
+    "descend_entity",
+    "plot_gravity",
+    "contradiction_repair"
+  ],
+  "signature": "WHITE_ROOM_EEL#9c2a",
+  "lore": [
+    "An administrative angel of the hub-space.",
+    "It does not 'spawn' entities; it 'permits' them to exist."
+  ]
+}

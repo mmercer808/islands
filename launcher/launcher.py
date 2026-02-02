@@ -2,7 +2,7 @@
 PyLauncher - Drag & Drop Python Script Runner
 Drop .py files to execute with captured output, environment management, and history tracking.
 """
-python.ex
+## python.ex
 import sys
 import os
 import json

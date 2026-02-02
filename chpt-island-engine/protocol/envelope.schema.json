@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Island Engine Message Envelope",
+  "type": "object",
+  "required": [
+    "v",
+    "message_id",
+    "ts",
+    "from",
+    "to",
+    "type",
+    "thread",
+    "payload"
+  ],
+  "properties": {
+    "v": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "message_id": {
+      "type": "string",
+      "minLength": 8
+    },
+    "ts": {
+      "type": "string"
+    },
+    "from": {
+      "type": "string",
+      "minLength": 3
+    },
+    "to": {
+      "type": "string",
+      "minLength": 1
+    },
+    "type": {
+      "type": "string",
+      "minLength": 3
+    },
+    "thread": {
+      "type": "string",
+      "minLength": 3
+    },
+    "payload": {
+      "type": "object"
+    }
+  },
+  "additionalProperties": true
+}
